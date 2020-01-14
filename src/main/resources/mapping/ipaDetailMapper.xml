@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.raspberry.ota.mapper.ipaDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.raspberry.ota.model.ipaDetail" >
+    <constructor >
+      <arg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="package_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="package_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="package_icon" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="package_version" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="display_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="display_time" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="display_linkurl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="display_remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <select id="selectByPackageType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from ipa_detail
+    <where>
+      package_type like #{packageType} order by create_time desc
+    </where>
+  </select>
+  <insert id="insert" parameterType="com.raspberry.ota.model.ipaDetail" >
+    insert into ipa_detail (id, package_name, package_type, 
+      package_icon, package_version, display_name, 
+      display_time, display_linkurl, display_remark, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{packageName,jdbcType=VARCHAR}, #{packageType,jdbcType=VARCHAR}, 
+      #{packageIcon,jdbcType=VARCHAR}, #{packageVersion,jdbcType=VARCHAR}, #{displayName,jdbcType=VARCHAR}, 
+      #{displayTime,jdbcType=VARCHAR}, #{displayLinkurl,jdbcType=VARCHAR}, #{displayRemark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.raspberry.ota.model.ipaDetail" >
+    insert into ipa_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="packageName != null" >
+        package_name,
+      </if>
+      <if test="packageType != null" >
+        package_type,
+      </if>
+      <if test="packageIcon != null" >
+        package_icon,
+      </if>
+      <if test="packageVersion != null" >
+        package_version,
+      </if>
+      <if test="displayName != null" >
+        display_name,
+      </if>
+      <if test="displayTime != null" >
+        display_time,
+      </if>
+      <if test="displayLinkurl != null" >
+        display_linkurl,
+      </if>
+      <if test="displayRemark != null" >
+        display_remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="packageName != null" >
+        #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="packageType != null" >
+        #{packageType,jdbcType=VARCHAR},
+      </if>
+      <if test="packageIcon != null" >
+        #{packageIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="packageVersion != null" >
+        #{packageVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="displayName != null" >
+        #{displayName,jdbcType=VARCHAR},
+      </if>
+      <if test="displayTime != null" >
+        #{displayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="displayLinkurl != null" >
+        #{displayLinkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="displayRemark != null" >
+        #{displayRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

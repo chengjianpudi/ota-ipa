@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <script src="/public/javascripts/qrcode/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/javascripts/qrcode/jquery.qrcode.js"></script>
+    <script type="text/javascript" src="/public/javascripts/qrcode/qrcode.js"></script>
+    <title>ios ipa server</title>
+</head>
+<body>
+
+
+<ul th:each="linkNode:${linklistPatient}">
+
+    <li >
+        <img th:src="${linkNode.getPackageIcon()}" class="icon" />
+
+        <div class="info">
+            <th:span class="subname" th:text="${linkNode.getDisplayName()}"></th:span>
+            <th:span class="desc" th:text="${linkNode.getPackageVersion()}"></th:span>
+            <th:span class="desc" th:text="${linkNode.getDisplayTime()}"></th:span>
+            <th:span class="desc" th:text="${linkNode.getDisplayRemark()}"></th:span>
+        </div>
+        <a th:href="${linkNode.getDisplayLinkurl()}"  class="buttonlink"> 安装 </a>
+    </li>
+    <hr/>
+
+</ul>
+</body>
+</html>

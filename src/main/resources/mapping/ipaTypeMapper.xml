@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.raspberry.ota.mapper.ipaTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.raspberry.ota.model.ipaType" >
+    <constructor >
+      <arg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="package_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="package_icon" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="display_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bundle_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="link_path" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <select id="selectByPackageType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from ipa_type
+    <where>
+      package_name like #{packageType}
+    </where>
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select *
+        from ipa_type
+    </select>
+  <insert id="insert" parameterType="com.raspberry.ota.model.ipaType" >
+    insert into ipa_type (id, package_name, package_icon, 
+      display_name, bundle_id, link_path, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{packageName,jdbcType=VARCHAR}, #{packageIcon,jdbcType=VARCHAR}, 
+      #{displayName,jdbcType=VARCHAR}, #{bundleId,jdbcType=VARCHAR}, #{linkPath,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.raspberry.ota.model.ipaType" >
+    insert into ipa_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="packageName != null" >
+        package_name,
+      </if>
+      <if test="packageIcon != null" >
+        package_icon,
+      </if>
+      <if test="displayName != null" >
+        display_name,
+      </if>
+      <if test="bundleId != null" >
+        bundle_id,
+      </if>
+      <if test="linkPath != null" >
+        link_path,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="packageName != null" >
+        #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="packageIcon != null" >
+        #{packageIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="displayName != null" >
+        #{displayName,jdbcType=VARCHAR},
+      </if>
+      <if test="bundleId != null" >
+        #{bundleId,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPath != null" >
+        #{linkPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
