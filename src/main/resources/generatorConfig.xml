@@ -23,7 +23,7 @@
 
         <!--jdbc的数据库连接-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://39.105.134.61:3306/Package"
+                        connectionURL="jdbc:mysql://39.105.134.61:3306/dev"
                         userId="root"
                         password="Tzmm.987">
         </jdbcConnection>
